@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT-Midjourney提示词</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body class="container">
+    <!-- 将前面给出的HTML代码粘贴到这里 -->
+    <h1>ChatGPT-Midjourney提示词</h1>
+    <form>
+      <div class="row mt-3">
+        <!-- Midjourney提示词参数 -->
+        <div class="col-sm-6 col-md-4">
+          <div
+            style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem"
+          >
+            自定义输入：
+          </div>
+
+          <input
+            type="text"
+            id="customInput"
+            name="customInput"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- aspect参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="aspect" class="form-label">图片尺寸:</label>
+          <select name="aspect" id="aspect" class="form-select">
+            <option value="1:1">1:1</option>
+            <option value="5:4">5:4</option>
+            <option value="3:2">3:2</option>
+            <option value="7:4">7:4</option>
+          </select>
+        </div>
+        <!-- quality参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="quality" class="form-label">图片质量:</label>
+          <select name="quality" id="quality" class="form-select">
+            <option value="1">.25</option>
+            <option value="2">.5</option>
+            <option value="3">.1</option>
+          </select>
+        </div>
+      </div>
+      <hr
+        style="
+          border-top: 1px solid #999;
+          width: 100%;
+          margin-top: 15px;
+          margin-bottom: 15px;
+        "
+      />
+
+      <div class="row mt-3">
+        <!-- title参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="tile" class="form-label">重复粘贴:</label>
+          <select name="tile" id="tile" class="form-select">
+            <option value="0">否</option>
+            <option value="1">是</option>
+          </select>
+        </div>
+        <!-- version参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="version" class="form-label">模型版本:</label>
+          <select name="version" id="version" class="form-select">
+            <option value="2">模型四 晴天远景</option>
+            <option value="3">模型四 阴天近景</option>
+            <option value="4">模型四 暗夜近景</option>
+            <option value="5">模型三</option>
+            <option value="6">模型二</option>
+            <option value="7">模型一</option>
+          </select>
+        </div>
+        <!-- video参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="video" class="form-label">动态效果:</label>
+          <select name="video" id="video" class="form-select">
+            <option value="0">否</option>
+            <option value="1">是</option>
+          </select>
+        </div>
+      </div>
+      <hr
+        style="
+          border-top: 1px solid #999;
+          width: 100%;
+          margin-top: 15px;
+          margin-bottom: 15px;
+        "
+      />
+      <div class="row mt-3">
+        <!-- seed参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="seedNumberRange" class="form-label">随机程度:</label>
+          <input
+            type="range"
+            id="seedNumberRange"
+            name="seedNumberRange"
+            class="form-range"
+            min="0"
+            max="4294967295"
+            value="123"
+            oninput="seedUpdateNumberInput(this.value)"
+          />
+          <input
+            type="number"
+            id="seedNumberInput"
+            name="seedNumberInput"
+            class="form-control"
+            min="0"
+            max="4294967295"
+            value="123"
+            oninput="seedUpdateNumberRange(this.value)"
+          />
+          <script>
+            function seedUpdateNumberInput(value) {
+              document.getElementById("seedNumberInput").value = value;
+            }
+
+            function seedUpdateNumberRange(value) {
+              document.getElementById("seedNumberRange").value = value;
+            }
+          </script>
+        </div>
+        <!-- stop参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="stopNumberRange" class="form-label">清晰程度:</label>
+          <input
+            type="range"
+            id="stopNumberRange"
+            name="stopNumberRange"
+            class="form-range"
+            min="10"
+            max="100"
+            value="100"
+            oninput="stopUpdateNumberInput(this.value)"
+          />
+
+          <input
+            type="number"
+            id="stopNumberInput"
+            name="stopNumberInput"
+            class="form-control"
+            min="10"
+            max="100"
+            value="100"
+            oninput="stopUpdateNumberRange(this.value)"
+          />
+          <script>
+            function stopUpdateNumberInput(value) {
+              document.getElementById("stopNumberInput").value = value;
+            }
+
+            function stopUpdateNumberRange(value) {
+              document.getElementById("stopNumberRange").value = value;
+            }
+          </script>
+        </div>
+        <!-- stylize参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="stylizeNumberRange" class="form-label">自由程度:</label>
+          <input
+            type="range"
+            id="stylizeNumberRange"
+            name="stylizeNumberRange"
+            class="form-range"
+            min="0"
+            max="1000"
+            value="100"
+            oninput="stylizeUpdateNumberInput(this.value)"
+          />
+          <input
+            type="number"
+            id="stylizeNumberInput"
+            name="stylizeNumberInput"
+            class="form-control"
+            min="0"
+            max="1000"
+            value="100"
+            oninput="stylizeUpdateNumberRange(this.value)"
+          />
+          <script>
+            function stylizeUpdateNumberInput(value) {
+              document.getElementById("stylizeNumberInput").value = value;
+            }
+
+            function stylizeUpdateNumberRange(value) {
+              document.getElementById("stylizeNumberRange").value = value;
+            }
+          </script>
+        </div>
+      </div>
+      <hr
+        style="
+          border-top: 1px solid #999;
+          width: 100%;
+          margin-top: 15px;
+          margin-bottom: 15px;
+        "
+      />
+
+      <div class="row mt-3">
+        <!-- repeat参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="repeatNumberRange" class="form-label">生成次数:</label>
+          <input
+            type="range"
+            id="repeatNumberRange"
+            name="repeatNumberRange"
+            class="form-range"
+            min="1"
+            max="10"
+            value="1"
+            oninput="repeatUpdateNumberInput(this.value)"
+          />
+          <input
+            type="number"
+            id="repeatNumberInput"
+            name="repeatNumberInput"
+            class="form-control"
+            min="1"
+            max="10"
+            value="1"
+            oninput="repeatUpdateNumberRange(this.value)"
+          />
+          <script>
+            function repeatUpdateNumberInput(value) {
+              document.getElementById("repeatNumberInput").value = value;
+            }
+
+            function repeatUpdateNumberRange(value) {
+              document.getElementById("repeatNumberRange").value = value;
+            }
+          </script>
+        </div>
+        <!-- chaos参数 -->
+        <div class="col-sm-6 col-md-4">
+          <label for="chaosNumberRange" class="form-label">古怪程度:</label>
+          <input
+            type="range"
+            id="chaosNumberRange"
+            name="chaosNumberRange"
+            class="form-range"
+            min="0"
+            max="100"
+            value="0"
+            oninput="chaosUpdateNumberInput(this.value)"
+          />
+          <input
+            type="number"
+            id="chaosNumberInput"
+            name="chaosNumberInput"
+            class="form-control"
+            min="0"
+            max="100"
+            value="0"
+            oninput="chaosUpdateNumberRange(this.value)"
+          />
+          <script>
+            function chaosUpdateNumberInput(value) {
+              document.getElementById("chaosNumberInput").value = value;
+            }
+
+            function chaosUpdateNumberRange(value) {
+              document.getElementById("chaosNumberRange").value = value;
+            }
+          </script>
+        </div>
+      </div>
+      <hr
+        style="
+          border-top: 1px solid #999;
+          width: 100%;
+          margin-top: 15px;
+          margin-bottom: 15px;
+        "
+      />
+    </form>
+    <button id="generateOutputButton" class="btn btn-primary mt-3">
+      生成提示词指令
+    </button>
+    <textarea id="output" class="form-control mt-3" readonly></textarea>
+    <script src="main.js"></script>
+  </body>
+</html>
