@@ -1,5 +1,3 @@
-const cors = require('cors');
-
 // 定义翻译函数
 async function translateText(text) {
   const response = await fetch("https://api.openai.com/v1/engines/davinci-codex/translations", {
